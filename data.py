@@ -4,6 +4,7 @@ import numpy as np
 from typing import Literal
 from simple_salesforce import Salesforce
 from datetime import datetime
+from emails import run_all
 
 st.set_page_config(page_title="Alma CX", layout="wide", initial_sidebar_state="collapsed")
 # Cache Salesforce data with a TTL of 24 hours (86400 seconds)
@@ -42,7 +43,7 @@ def add_aging_column(df: pd.DataFrame):
 st.title("Customer Warranty Data")
 
 # Create tabs for 30, 90, and 180-day views
-tabs = st.tabs(["30 Days", "90 Days", "180 Days"])
+tabs = st.tabs(["30 Days", "90 Days", "180 Days", "Send Emails"])
 
 # Fetch and display data for each tab
 with tabs[0]:
@@ -62,3 +63,12 @@ with tabs[2]:
     df_180 = get_sfdc_data(type="180day")
     df_180_with_aging = add_aging_column(df_180)
     st.dataframe(df_180_with_aging, use_container_width=True)
+
+with tabs[3]:
+    run_emails = st.button(label="Run Emails")
+    if run_emails:
+        run_all()
+
+
+        
+

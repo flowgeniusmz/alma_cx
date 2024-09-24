@@ -56,10 +56,11 @@ def send_180_day_emails(df):
         except Exception as e:
             print(e)
             
+def run_all():
 
-df30 = get_sfdc_data(type="30day")
-df90 = get_sfdc_data(type="90day")
-df180 = get_sfdc_data(type="180day")
-send_30_day_emails(df30)
-send_90_day_emails(df90)
-send_180_day_emails(df180)
+    df30 = get_sfdc_data(type="30day")
+    df90 = get_sfdc_data(type="90day")
+    df180 = get_sfdc_data(type="180day")
+    send_30_day_emails(df30)
+    send_90_day_emails(df90)
+    send_180_day_emails(df180)
