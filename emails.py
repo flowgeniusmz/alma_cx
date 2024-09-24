@@ -50,7 +50,7 @@ def send_90_day_emails(df):
 def send_180_day_emails(df):
     url = st.secrets.requests.url
     for index, row in df.iterrows():
-        payload = {"type": "180Day", "warranty_end_date": row['Customer_Warranty_End_Date__c'], "account": row['Account__c'], "email": "cxspecialist@almalasers.com"}
+        payload = {"type": "180Day", "warranty_end_date": row['Customer_Warranty_End_Date__c'], "account": row['Account_Name__c'], "email": "cxspecialist@almalasers.com"}
         try:
             response = requests.post(url=url, json=payload)
         except Exception as e:
